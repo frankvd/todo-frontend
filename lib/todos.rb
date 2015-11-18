@@ -1,11 +1,15 @@
 def edit_todo(todo)
-    tags = todo.tags.map {|t| t["name"]} .join ", "
+    tags = todo.tags.map {|t| t.name} .join ", "
     say "==============="
     say "Todo: #{todo.name} (#{tags})"
 
     choose do |menu|
-        menu.choice("Remove this item") { remove_todo todo}
-        menu.choice("Add a tag to this item") { add_tag todo }
+        menu.choice("- Back to list") { show_list todo.list.get }
+        menu.choice("- Remove this item") { remove_todo todo }
+        menu.choice("- Add a tag to this item") { add_tag todo }
+        todo.tags.each do |t|
+            menu.choice("#{t.name} [remove]") { remove_tag t }
+        end
     end
 end
 

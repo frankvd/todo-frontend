@@ -1,16 +1,17 @@
 def lists(user)
     say "==============="
-    say "Your lists:"
+    say "Create a new list or select an existing one."
+    say "==============="
     choose do |menu|
-      menu.choice("Create a new list") { add_list(user) }
-      user.lists.each do |l|
-          menu.choice(l.name) { show_list(l) }
-      end
+        menu.choice("- Create a new list") { add_list(user) }
+        menu.choice("- Search by tag") { tags(user.links.tags.get) }
+        user.lists.each do |l|
+            menu.choice(l.name) { show_list(l.self.get) }
+        end
     end
 end
 
 def add_list(user)
-    puts user.links.inspect
     name = ask("List name:  ")
 
     user.links.lists.post name: name
@@ -27,13 +28,13 @@ end
 def show_list(list)
     say "=================="
     say "List: #{list.name}"
+    say "-----------------"
     choose do |menu|
-        menu.choice("Back to all lists") { lists list.links.me.get }
-        menu.choice("Remove this list") { remove_list list}
-        menu.choice("Add a new item") { add_todo list }
-        say "-----------------"
+        menu.choice("- Back to all lists") { lists list.links.me.get }
+        menu.choice("- Remove this list") { remove_list list}
+        menu.choice("- Add a new item") { add_todo list }
         list.todos.each do |t|
-            menu.choice("#{t.name} [edit]") { edit_todo t }
+            menu.choice("#{t.name} [edit]") { edit_todo t.get }
         end
     end
 end
