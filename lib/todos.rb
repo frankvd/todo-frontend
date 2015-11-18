@@ -5,6 +5,7 @@ def edit_todo(todo)
 
     choose do |menu|
         menu.choice("- Back to list") { show_list todo.list.get }
+        menu.choice("- Rename this item") { rename_todo todo }
         menu.choice("- Remove this item") { remove_todo todo }
         menu.choice("- Add a tag to this item") { add_tag todo }
         todo.tags.each do |t|
@@ -18,6 +19,14 @@ def add_todo(list)
     list.links.items.post name: name
 
     show_list list.get
+end
+
+def rename_todo(todo)
+    name = ask("New name: ")
+
+    todo.self.post name: name
+
+    edit_todo todo.get
 end
 
 def remove_todo(todo)
