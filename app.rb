@@ -10,7 +10,7 @@ require "./lib/todos.rb"
 require "./lib/tags.rb"
 
 if !ENV["host"].present? then
-    ENV["host"] = "http:/localhost:8888"
+    ENV["host"] = "http://localhost:8888"
 end
 
 api = HyperResource.new(root: ENV["host"],
