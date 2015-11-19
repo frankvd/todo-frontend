@@ -8,7 +8,11 @@ require "./lib/lists.rb"
 require "./lib/todos.rb"
 require "./lib/tags.rb"
 
-api = HyperResource.new(root: "http://localhost:3306",
+if !ENV["host"].present? then
+    ENV["host"] = "http:/localhost:8888"
+end
+
+api = HyperResource.new(root: ENV["host"],
                     headers: {"Accept" => "application/hal+json"})
 root = api.get
 cookie = CGI::Cookie::parse root.get_response.headers["set-cookie"]
