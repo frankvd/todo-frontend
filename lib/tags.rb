@@ -1,3 +1,4 @@
+# Display all tags belonging to the logged in user
 def tags(tags)
     choose do |menu|
         tags.tags.each do |t|
@@ -6,6 +7,7 @@ def tags(tags)
     end
 end
 
+# Display all todo's with a specific tag
 def tag_todos(list)
     say "=================="
     say "#{list.name}"

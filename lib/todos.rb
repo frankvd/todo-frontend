@@ -1,3 +1,4 @@
+# Edit a todo
 def edit_todo(todo)
     tags = todo.tags.map {|t| t.name} .join ", "
     say "==============="
@@ -14,6 +15,7 @@ def edit_todo(todo)
     end
 end
 
+# Add a todo to a list
 def add_todo(list)
     name = ask("Name: ")
     list.links.items.post name: name
@@ -21,6 +23,7 @@ def add_todo(list)
     show_list list.get
 end
 
+# Rename a todo
 def rename_todo(todo)
     name = ask("New name: ")
 
@@ -29,13 +32,14 @@ def rename_todo(todo)
     edit_todo todo.get
 end
 
+# Remove a todo
 def remove_todo(todo)
     todo.links.self.delete
 
     show_list todo.links.list.get
 end
 
-
+# Add a tag to a todo
 def add_tag(todo)
     name = ask("Name: ")
     todo.links.tags.post name: name
@@ -43,6 +47,7 @@ def add_tag(todo)
     edit_todo todo.get
 end
 
+# Remove a tag from a todo
 def remove_tag(tag)
     tag.links.self.delete
 

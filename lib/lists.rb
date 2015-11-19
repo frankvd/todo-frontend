@@ -1,3 +1,4 @@
+# Display all lists of the user
 def lists(user)
     say "==============="
     say "Create a new list or select an existing one."
@@ -11,6 +12,7 @@ def lists(user)
     end
 end
 
+# Add a new list
 def add_list(user)
     name = ask("List name:  ")
 
@@ -19,6 +21,7 @@ def add_list(user)
     lists user.links.self.get
 end
 
+# Rename a list
 def rename_list(list)
     name = ask("New name: ")
     list.self.post name: name
@@ -26,12 +29,14 @@ def rename_list(list)
     show_list list.get
 end
 
+# Remove a list
 def remove_list(list)
     list.links.self.delete
 
     lists list.links.me.get
 end
 
+# Display a single list
 def show_list(list)
     say "=================="
     say "List: #{list.name}"

@@ -1,3 +1,4 @@
+# Try to login
 def login(root)
     username = ask("Username:  ")
     password = ask("Password:  ") { |q| q.echo = "x" }
@@ -12,6 +13,7 @@ def login(root)
     user
 end
 
+# Try to register a new user
 def register(root)
     username = ask("Username:  ")
     password = ask("Password:  ") { |q| q.echo = "x" }
