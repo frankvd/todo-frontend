@@ -1,6 +1,7 @@
 # Display all tags belonging to the logged in user
 def tags(tags)
     choose do |menu|
+        menu.choice("- Back to all lists") { lists tags.links.me.get }
         tags.tags.each do |t|
             menu.choice(t.name) {tag_todos t.todos.get}
         end
