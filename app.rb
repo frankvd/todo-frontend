@@ -1,6 +1,7 @@
 require "rubygems"
 require "bundler/setup"
 require "multi_json"
+require "active_support/all"
 require "hyperresource"
 require "highline/import"
 require "./lib/auth.rb"
